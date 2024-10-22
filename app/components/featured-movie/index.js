@@ -6,7 +6,6 @@ import { FaPlus } from 'react-icons/fa'
 
 function FeaturedMovie( {movie = {}, isCompact = true } ) {
     const {poster_path, title, overview} = movie
-    console.log("movieData", movie);
   return (
     <div className={styles.movieWrapper}>
         <h1 className= {styles.movieTitle}>

@@ -1,8 +1,16 @@
 import React from 'react'
+import MovieContainer from '@/app/containers/movie'
+import Movies from '@/mocks/movies.json';
+import { notFound } from 'next/navigation';
 
-function MoviePage() {
+function MoviePage({ params }) {
+    const movieDetail = Movies.results.find( movie =>  movie.id.toString() === params.id )
+
+    if(!movieDetail){
+      notFound();
+    }
   return (
-    <div>MoviePage</div>
+    <MovieContainer movie={movieDetail} />
   )
 }
 

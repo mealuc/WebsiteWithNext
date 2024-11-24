@@ -25,3 +25,108 @@
     font-weight: bold;
     letter-spacing: 2px;
 }
+
+.hamburgerMenu{
+    --height: 5px;
+    --space: calc(var(--height) * 2);
+    --animation-speed: 300ms;
+    display: block;
+    width: calc(var(--space) * 3);
+    height: calc(var(--height) + (var(--space) * 3));
+    cursor: pointer;
+}
+
+.hamburgerMenu span,
+.hamburgerMenu span::before,
+.hamburgerMenu span::after {
+    content: '';
+    display: block;
+    height: var(--height);
+    width: 100%;
+    background: rgba(256,256,256,0.8);
+}
+
+.hamburgerMenu span{
+    transform: translateY(calc(var(--height) * 3 ));
+    transition: var(--animation-speed);
+}
+
+.hamburgerMenu span::before{
+    position: absolute;
+    bottom: calc(var(--space));
+    transition: var(--animation-speed) transform, var(--animation-speed) var(--animation-speed) bottom;
+}
+
+.hamburgerMenu span::after{
+    position: absolute;
+    top: calc(var(--space));
+    transition: var(--animation-speed) transform, var(--animation-speed) var(--animation-speed) top;
+}
+
+.menuToggle {
+    display: none;
+}
+
+.menuToggle:checked + .hamburgerMenu span {
+    background: transparent;
+}
+
+.menuToggle:checked + .hamburgerMenu span::before {
+    transform: rotate(45deg);
+    bottom: 0;
+    transition: var(--animation-speed) var(--animation-speed) transform, var(--animation-speed) bottom;
+}
+
+.menuToggle:checked + .hamburgerMenu span::after {
+    transform: rotate(-45deg);
+    top: 0;
+    transition: var(--animation-speed) var(--animation-speed) transform, var(--animation-speed) top;
+}
+
+.hamburgerContainer{
+    z-index: 1;
+    top: 0;
+    left: 0;
+    height: 100%;
+    position: fixed;
+    background-color: rgba(0,0,0,0.8);
+    width: 33.33vw;
+    transform: translateX(-100%);
+    transition: 0.3s transform;
+}
+
+.menuToggle:checked ~ nav.hamburgerContainer{
+    transform: translateX(0);
+    transition: 0.3s transform;
+}
+
+.hambugerWrapper{
+    margin: 1rem 1rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(1, minmax(0, 1fr));;
+}
+
+.hambugerWrapper ul{
+    color: white;
+    height: auto;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+@media (max-width: 1024px) {
+    .navigationMenu{
+      display: none;
+    }
+  }
+
+  @media (min-width: 1025px) {
+    .hamburgerMenu{
+        display: none;   
+    }
+  }
